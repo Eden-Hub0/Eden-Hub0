@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Doctor Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/profile_doctor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+
+</head>
+
+<body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Form</h2>
+
+            <div class="form-container">
+                <h2>Consultation Form</h2>
+                <form id="myForm">
+                    <div>
+                        <label for="formDoctorName">Name of the Doctor:</label>
+                        <input type="text" id="formDoctorName" name="formDoctorName" required>
+                    </div>
+                    <div>
+                        <label for="consultationDate">Date of Consultation:</label>
+                        <input type="date" id="consultationDate" name="consultationDate" required>
+                    </div>
+                    <div>
+                        <label for="medicationNumber">Number of Medication:</label>
+                        <input type="number" id="medicationNumber" name="medicationNumber" required>
+                    </div>
+                    <div>
+                        <label for="medicationName">Name of Medication:</label>
+                        <input type="text" id="medicationName" name="medicationName" required>
+                    </div>
+                    <div>
+                        <label for="timeOfDay">Time of the Day:</label>
+                        <select id="timeOfDay" name="timeOfDay" required>
+                            <option value="">Select a time</option>
+                            <option value="morning">Morning</option>
+                            <option value="afternoon">Afternoon</option>
+                            <option value="evening">Evening</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="period">Period:</label>
+                        <input type="text" id="period" name="period" required>
+                    </div>
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Popup Modal -->
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Thank You!</h2>
+            <p id="popupMessage">The consultation has been added successfully.<i class="fas fa-check-circle"></i> </p>
+        </div>
+    </div>
+
+    <!-- Modal boxes for the doctor profile buttons-->
+    <div id="qrCodeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="modal-title">Please scan the patient's card via the barcode reader</h3>
+            <div class="modal-image-container">
+                <img class="modal-image" src="image/scan-animation.gif" alt="QR Code">
+            </div>
+        </div>
+    </div>
+    <div id="empraintModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="modal-title">Please read the patient's fingerprint via the device</h3>
+            <div class="modal-image-container">
+                <img class="modal-image" src="image/security.gif" alt="Empraint">
+            </div>
+        </div>
+    </div>
+    <div id="fullpage">
+        <div class="section">
+            <!-- Content for Page 1 -->
+
+            <div class="wrapper">
+                <div class="left">
+                  <img src="" alt="user" id="doctorImage">
+                  <h4 id="doctorName"></h4>
+                </div>
+                <div class="right">
+                  <div class="info">
+                    <h3>General Information</h3>
+                    <div class="info_data">
+                      <div class="data">
+                        <h4>Gender</h4>
+                        <p id="gender"></p>
+                      </div>
+                      <div class="data">
+                        <h4>Age</h4>
+                        <p id="age"></p>
+                      </div>
+                      <div class="data">
+                        <h4>Phone</h4>
+                        <p id="phone"></p>
+                      </div>
+                    </div>
+                    <div class="info_data">
+                      <div class="data">
+                        <h4>Last Authentication:</h4>
+                        <p id="lastAuth"></p>
+                      </div>
+                      <div class="data">
+                        <h4>Birthdate:</h4>
+                        <p id="birthdate"></p>
+                      </div>
+                      <div class="data">
+                        <h4>Birthplace:</h4>
+                        <p id="birthplace"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="projects">
+                    <h3>Professional Information</h3>
+                    <div class="projects_data">
+                      <div class="data">
+                        <h4>Grade</h4>
+                        <p id="grade"></p>
+                      </div>
+                      <div class="data">
+                        <h4>Medical Facility</h4>
+                        <p id="medicalFacility"></p>
+                      </div>
+                    </div>
+                    <div class="projects_data">
+                      <div class="data">
+                        <h4>Specialty</h4>
+                        <p id="specialty"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="buttons-container">
+                    <div class="patient-buttons">
+                      <button class="QR-Code-button">Scan QR Code</button>
+                      <button class="empraint-button">Read Fingerprint</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+          
+        </div>
+
+        <div class="section">
+            <!-- Content for Page 2 -->
+            <!-- Content for Page 2 -->
+
+            <div class="container">
+                <div class="filter-bar">
+                    <div class="order-buttons">
+                        <button id="filter-date">
+                            <i class="fas fa-calendar"></i> Filter by Date
+                        </button>
+                        <button id="filter-alphabetical">
+                            <i class="fas fa-sort-alpha-down"></i> Filter Alphabetically
+                        </button>
+                    </div>
+                    <button id="restore-order" class="restore-button">
+                        <i class="fas fa-undo"></i> Restore Original Order
+                    </button>
+                </div>
+                <div class="search-bar">
+                    <!-- Search input and button here -->
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search patients...">
+                        <button id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-container swiper">
+                <div class="slide-content">
+                  <div class="card-wrapper swiper-wrapper">
+                    <!-- Use JavaScript to dynamically generate these cards -->
+                  </div>
+                </div>
+            
+                <div class="swiper-button-next swiper-navBtn"></div>
+                <div class="swiper-button-prev swiper-navBtn"></div>
+                <div class="swiper-pagination"></div>
+              </div>
+            <div id="no-results-message" class="no-results-message">
+                No results found.
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    
+    <script src="js/patient-cards-js/script.js"></script>
+
+
+    
+    <script>
+
+
+
+
+console.log("................")
+
+        new fullpage('#fullpage', {
+            verticalCentered: true,
+
+
+            navigation: true,
+        });
+
+        // Get the buttons
+        const qrCodeButton = document.querySelector('.QR-Code-button');
+        const empraintButton = document.querySelector('.empraint-button');
+
+        // Get the modal boxes
+        const qrCodeModal = document.getElementById('qrCodeModal');
+        const empraintModal = document.getElementById('empraintModal');
+
+        // Get the close buttons
+        const closeButtons = document.querySelectorAll('.close-button');
+
+        // Open the QR Code modal box
+        qrCodeButton.addEventListener('click', function () {
+            qrCodeModal.style.display = 'block';
+        });
+
+        // Open the Empraint modal box
+        empraintButton.addEventListener('click', function () {
+            empraintModal.style.display = 'block';
+        });
+
+        // Close the modal boxes when the user clicks on the close button or outside of them
+        closeButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                qrCodeModal.style.display = 'none';
+                empraintModal.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target == qrCodeModal || event.target == empraintModal) {
+                qrCodeModal.style.display = 'none';
+                empraintModal.style.display = 'none';
+            }
+        });
+    </script>
+<!-- Include this script in your HTML file -->
+<script>
+// Function to fetch doctor data from the API
+async function fetchDoctorData(doctorId) {
+    try {
+        const response = await fetch(`http://localhost:4000/full_doctor_profile/${doctorId}`);
+        const data = await response.json();
+        return data[0]; // Assuming the response is an array with one object
+    } catch (error) {
+        console.error("Error fetching doctor data:", error);
+        throw error; // Re-throw the error for further handling
+    }
+}
+
+// Function to update HTML elements with doctor data
+function updateDoctorInfo(data) {
+    document.getElementById('doctorImage').src = data.picture;
+    document.getElementById('doctorName').innerText = data.first_name + " " + data.last_name;
+    document.getElementById('gender').innerText = data.gender;
+    document.getElementById('age').innerText = calculateAge(data.birthdate);
+    document.getElementById('phone').innerText = data.phone_number;
+    document.getElementById('lastAuth').innerText = formatDate(data.last_authentication);
+    document.getElementById('birthdate').innerText = formatDate(data.birthdate);
+    document.getElementById('birthplace').innerText = data.birth_place;
+    document.getElementById('grade').innerText = data.grade;
+    document.getElementById('medicalFacility').innerText = data.facility;
+    document.getElementById('specialty').innerText = data.specialty;
+}
+
+// Replace "D001" with the actual doctor ID you want to retrieve
+
+
+
+const  urlParam = new URLSearchParams(window.location.search);
+
+const doctorId = urlParam.get('id');
+
+
+console.log(doctorId)
+// Use uppercase "D001"
+
+// Fetch doctor data and update UI
+fetchDoctorData(doctorId)
+    .then(data => {
+        console.log("Doctor Data:", data);
+        updateDoctorInfo(data);
+
+    })
+    .catch(error => {
+        // Handle the error gracefully, for example, by displaying an error message to the user
+        console.error("Failed to fetch doctor data:", error);
+    });
+
+
+    </script>
+    
+    <!-- JavaScript -->
+
+
+
+
+
+</body>
+
+</html>
